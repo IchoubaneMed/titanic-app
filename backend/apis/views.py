@@ -3,7 +3,12 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.core.files.storage import default_storage
 import pandas as pd
+from rest_framework import generics
 from .models import Passenger
+from .serializers import PassengerSerializer
+from rest_framework.filters import OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
+import django_filters
 
 
 # Create your views here.
@@ -47,3 +52,20 @@ class UploadCSVView(APIView):
             })
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class PassengerFilter(django_filters.FilterSet):
+    sex = django_filters.CharFilter(field_name="sex", lookup_expr="iexact")
+    survived = django_filters.BooleanFilter(field_name="survived")
+    pclass = django_filters.NumberFilter(field_name="pclass")
+
+    class Meta:
+        model = Passenger
+        fields = ['sex', 'survived', 'pclass']
+
+class PassengerListView(generics.ListAPIView):
+    queryset = Passenger.objects.all()
+    serializer_class = PassengerSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_class = PassengerFilter
+    ordering_fields = ['age', 'fare']
