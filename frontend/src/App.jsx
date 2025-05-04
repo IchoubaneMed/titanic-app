@@ -1,8 +1,13 @@
+import Dashboard from "./pages/Dashboard";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
 
   return (
     <>
-      <h1>Hello Mohamed Ichoubane</h1>
+      <Dashboard />
+      <ToastContainer position="top-right" autoClose={3000} />
     </>
   )
 }
