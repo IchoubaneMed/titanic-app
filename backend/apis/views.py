@@ -69,3 +69,26 @@ class PassengerListView(generics.ListAPIView):
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_class = PassengerFilter
     ordering_fields = ['age', 'fare']
+
+class AllPassengersView(APIView):
+    """
+    Return ALL passengers matching filters (no pagination).
+    Intended for charting purposes.
+    """
+    def get(self, request):
+        queryset = Passenger.objects.all()
+
+        # Apply filters
+        sex = request.GET.get("sex")
+        survived = request.GET.get("survived")
+        pclass = request.GET.get("pclass")
+
+        if sex:
+            queryset = queryset.filter(sex__iexact=sex)
+        if survived in ("true", "false"):
+            queryset = queryset.filter(survived=(survived == "true"))
+        if pclass:
+            queryset = queryset.filter(pclass=pclass)
+
+        serializer = PassengerSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
