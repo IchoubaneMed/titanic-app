@@ -92,3 +92,9 @@ class AllPassengersView(APIView):
 
         serializer = PassengerSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class DeleteAllPassengersView(APIView):
+    def delete(self, request):
+        count = Passenger.objects.count()
+        Passenger.objects.all().delete()
+        return Response({"message": f"Deleted {count} passengers."}, status=status.HTTP_200_OK)
