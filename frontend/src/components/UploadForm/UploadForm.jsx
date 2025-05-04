@@ -5,6 +5,7 @@ import styles from '../../styles/components/UploadForm.module.css';
 
 const UploadForm = ({ onUploadSuccess, onDeleteAll }) => {
     const [file, setFile] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -12,8 +13,15 @@ const UploadForm = ({ onUploadSuccess, onDeleteAll }) => {
             toast.warning("Please select a file.");
             return
         };
+
+        setLoading(true);
+        const timeoutId = setTimeout(() => {
+            toast.info("Still uploading... this might take a bit longer ⏳");
+        }, 20000);
         try {
             const res = await uploadCSV(file);
+            clearTimeout(timeoutId); // clear the warning toast timer if upload finishes in time
+
             if (res && !res.error) {
                 toast.success("CSV uploaded successfully!");
                 onUploadSuccess(); // trigger data refresh in Dashboard
@@ -23,6 +31,8 @@ const UploadForm = ({ onUploadSuccess, onDeleteAll }) => {
         } catch (err) {
             toast.error("Something went wrong.");
             console.error(err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -32,7 +42,13 @@ const UploadForm = ({ onUploadSuccess, onDeleteAll }) => {
                 📁 Select File
                 <input type="file" className={styles.hiddenInput} onChange={(e) => setFile(e.target.files[0])} />
             </label>
-            <button type="submit" className={styles.button}>Upload CSV</button>
+            <button type="submit" className={styles.button}>
+                {loading ? (
+                    <span className={styles.spinner}></span>
+                ) : (
+                    "Upload CSV"
+                )}
+            </button>
             <button type="button" onClick={onDeleteAll} className={`${styles.button} ${styles.deleteButton}`}>
                 🗑 Delete All
             </button>
