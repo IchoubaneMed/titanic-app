@@ -1,0 +1,21 @@
+# Node modules
+node_modules
+
+# Vite build output
+dist
+
+# OS metadata
+.DS_Store
+
+# Git-related
+.git
+.gitignore
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env files (optional)
+.env
+.env.local
