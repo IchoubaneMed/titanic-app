@@ -1,0 +1,12 @@
+.filters {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.filters select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: var(--radius);
+    font-family: var(--font-stack);
+}

@@ -1,0 +1,48 @@
+.form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/*.input {
+    flex: 1;
+}*/
+
+.hiddenInput {
+    display: none;
+}
+
+.customFileLabel {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary);
+    color: white;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.customFileLabel:hover {
+    background-color: #0056b3;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.deleteButton {
+    background-color: var(--danger);
+}

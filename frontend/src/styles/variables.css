@@ -1,0 +1,9 @@
+:root {
+    --primary: #007bff;
+    --danger: #dc3545;
+    --success: #28a745;
+    --text-color: #333;
+    --bg-light: #f9f9f9;
+    --radius: 6px;
+    --font-stack: "Segoe UI", Roboto, sans-serif;
+}
