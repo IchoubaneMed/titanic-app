@@ -37,10 +37,10 @@ const UploadForm = ({ onUploadSuccess, onDeleteAll }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form onSubmit={handleSubmit} className={styles.form} data-testid="upload-form">
             <label className={styles.customFileLabel}>
                 📁 Select File
-                <input type="file" className={styles.hiddenInput} onChange={(e) => setFile(e.target.files[0])} />
+                <input type="file" className={styles.hiddenInput} onChange={(e) => setFile(e.target.files[0])} aria-label="File Upload" />
             </label>
             <button type="submit" className={styles.button}>
                 {loading ? (
@@ -49,7 +49,7 @@ const UploadForm = ({ onUploadSuccess, onDeleteAll }) => {
                     "Upload CSV"
                 )}
             </button>
-            <button type="button" onClick={onDeleteAll} className={`${styles.button} ${styles.deleteButton}`}>
+            <button type="button" onClick={onDeleteAll} className={`${styles.button} ${styles.deleteButton}`} aria-label="Delete All">
                 🗑 Delete All
             </button>
         </form>
