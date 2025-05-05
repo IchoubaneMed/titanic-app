@@ -27,9 +27,28 @@ cd titanic-app
 ```bash
 docker-compose build
 docker-compose up -d
+docker-compose exec web python manage.py migrate
 ```
     - Frontend will be available at http://localhost:5173/
     - Backend API will be served at http://localhost:8000/
+
+## 🖱️ How to Use the App
+
+1. Click on the **Select File** button 
+    ![Step 1 - Select File](./img/select-file.png)
+
+2. Choose a CSV file from the `data` folder
+
+    ![Step 2 - Choose File](./img/choose-csv.png)
+
+3. Click **Upload CSV** to submit
+    ![Step 3 - Upload CSV](./img/upload-csv.png)
+    ![Step 4 - Wait Upload CSV](./img/upload-csv2.png)
+    ![Step 5 - Uploaded CSV](./img/upload-csv3.png)
+
+4. To delete all records, click **Delete All**
+    ![Step 4 - Delete All](./img/delete-all.png)
+
 
 
 ## 📂 Project Structure
