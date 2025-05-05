@@ -43,6 +43,7 @@ docker-compose exec web python manage.py migrate
 
 3. Click **Upload CSV** to submit
     ![Step 3 - Upload CSV](./img/upload-csv.png)
+    it could take up to 1 min !
     ![Step 4 - Wait Upload CSV](./img/upload-csv2.png)
     ![Step 5 - Uploaded CSV](./img/upload-csv3.png)
 
@@ -93,10 +94,10 @@ PassengerId,Survived,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked
 
 | Method | Endpoint                      | Description                             |
 | ------ | ----------------------------- | --------------------------------------- |
-| POST   | `/api/upload/`                | Upload CSV file                         |
-| GET    | `/api/passengers/`            | Paginated passengers with filters       |
-| GET    | `/api/passengers/all/`        | All filtered passengers (no pagination) |
-| DELETE | `/api/passengers/delete_all/` | Delete all passengers                   |
+| POST   | `/api/v1/upload/`                | Upload CSV file                         |
+| GET    | `/api/v1/passengers/`            | Paginated passengers with filters       |
+| GET    | `/api/v1/passengers/all/`        | All filtered passengers (no pagination) |
+| DELETE | `/api/v1/passengers/delete_all/` | Delete all passengers                   |
 
 ## 👤 Author
 
